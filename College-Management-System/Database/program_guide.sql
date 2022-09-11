@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Aug 20, 2022 at 01:10 PM
+-- Generation Time: Sep 11, 2022 at 05:20 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.3.1
 
@@ -61,17 +61,7 @@ CREATE TABLE IF NOT EXISTS `faculty` (
   `created_on` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `faculty`
---
-
-INSERT INTO `faculty` (`id`, `name`, `description`, `created_on`) VALUES
-(2, 'faculty of education', 'education faculty is the best', '2022-08-22 06:00:00'),
-(3, 'faculty of applied sciences', 'for sciences', '2022-08-11 12:07:58'),
-(4, 'faculty of engineering', 'for engines', '2022-08-12 08:43:01'),
-(5, 'faculty of commerce', 'commerce ', '2022-08-18 10:06:45');
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -81,22 +71,11 @@ INSERT INTO `faculty` (`id`, `name`, `description`, `created_on`) VALUES
 
 DROP TABLE IF EXISTS `grade_weights`;
 CREATE TABLE IF NOT EXISTS `grade_weights` (
-  `weight_number` int(11) NOT NULL,
+  `weight_number` varchar(10) NOT NULL,
   `description` varchar(30) NOT NULL,
-  `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_on` datetime DEFAULT NULL,
   PRIMARY KEY (`weight_number`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `grade_weights`
---
-
-INSERT INTO `grade_weights` (`weight_number`, `description`, `created_on`) VALUES
-(1, 'excellent', '2022-08-08 12:59:24'),
-(2, 'very good', '2022-08-11 09:30:56'),
-(3, 'good', '2022-08-12 08:54:28'),
-(4, 'atleast', '2022-08-12 08:54:43'),
-(5, 'average', '2022-08-12 08:55:08');
 
 -- --------------------------------------------------------
 
@@ -117,17 +96,6 @@ CREATE TABLE IF NOT EXISTS `programs` (
   KEY `faculty` (`faculty`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `programs`
---
-
-INSERT INTO `programs` (`id`, `code`, `name`, `faculty`, `created_on`) VALUES
-(8, 'BIT', 'business information technology', 3, '2022-08-11 11:35:24'),
-(9, 'BIS', 'business information systems', 3, '2022-08-11 11:35:43'),
-(10, 'EST', 'Environmental Science and Technology', 3, '2022-08-12 08:43:59'),
-(11, 'MEG', 'Mechanical Engineering', 4, '2022-08-12 08:45:01'),
-(12, 'TED', 'Technical Education', 2, '2022-08-12 08:45:19');
-
 -- --------------------------------------------------------
 
 --
@@ -139,24 +107,13 @@ CREATE TABLE IF NOT EXISTS `program_subjects` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `subject` int(11) NOT NULL,
   `program` int(11) NOT NULL,
-  `weight` int(11) DEFAULT NULL,
+  `weight` varchar(10) DEFAULT NULL,
   `created_on` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `program` (`program`),
   KEY `subject` (`subject`),
   KEY `weight` (`weight`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `program_subjects`
---
-
-INSERT INTO `program_subjects` (`id`, `subject`, `program`, `weight`, `created_on`) VALUES
-(3, 3, 8, 2, '2022-08-25 00:00:00'),
-(8, 3, 9, 2, '2022-08-11 15:26:33'),
-(9, 4, 9, 1, '2022-08-11 15:26:41'),
-(10, 3, 10, 1, '2022-08-12 08:47:04'),
-(12, 4, 10, 2, '2022-08-12 08:47:43');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -178,7 +135,7 @@ CREATE TABLE IF NOT EXISTS `questions` (
   PRIMARY KEY (`id`),
   KEY `student` (`student`),
   KEY `admin` (`admin`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -205,7 +162,7 @@ CREATE TABLE IF NOT EXISTS `students` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `phone` (`phone`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -218,13 +175,13 @@ CREATE TABLE IF NOT EXISTS `students_subjects` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `subject` int(11) NOT NULL,
   `student` int(11) NOT NULL,
-  `weight` int(11) DEFAULT NULL,
+  `weight` varchar(10) DEFAULT NULL,
   `created_on` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `student` (`student`),
   KEY `subject` (`subject`),
   KEY `weight` (`weight`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -240,7 +197,7 @@ CREATE TABLE IF NOT EXISTS `subjects` (
   `created_on` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `subjects`
@@ -252,7 +209,8 @@ INSERT INTO `subjects` (`id`, `name`, `description`, `created_on`) VALUES
 (5, 'life skills ', 'socialogy', '2022-08-12 08:50:38'),
 (6, 'physics', 'physical science', '2022-08-12 08:50:57'),
 (7, 'chemist', 'chemistry', '2022-08-12 08:51:12'),
-(8, 'geography', 'human and physical geography', '2022-08-12 08:52:31');
+(8, 'geography', 'human and physical geography', '2022-08-12 08:52:31'),
+(9, 'english', 'for english', '2022-08-29 12:12:16');
 
 -- --------------------------------------------------------
 
