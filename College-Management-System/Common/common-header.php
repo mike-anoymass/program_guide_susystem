@@ -16,7 +16,7 @@
  
 
     <nav class="navbar navbar-expand-lg navbar-dark header-back sticky-top header-navbar-fonts">
-      <a class="navbar-brand d-flex align-items-center" href="../index.php">
+      <a class="navbar-brand d-flex align-items-center" href="/college-management-system/index.php">
         <img src="/College-Management-System/images/logo.jpeg" class="logo-image" width="50" height="50">
         <h3 class="text-light text-uppercase ml-2">MUBAS PROGRAM GUIDE</h3>
       </a>
